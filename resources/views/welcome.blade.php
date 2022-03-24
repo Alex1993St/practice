@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/manager') }}">Ваша сторінка</a>
+                        <a href="{{ url('/home') }}">Ваша сторінка</a>
                     @else
                         <a href="{{ route('login') }}">Вхід</a>
 
