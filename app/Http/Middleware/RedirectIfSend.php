@@ -2,13 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Comment;
+use App\Modules\Comment;
 use Closure;
 
 class RedirectIfSend
 {
     /**
-     * Handle an incoming request.
+     * Middleware to check if user send comment
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

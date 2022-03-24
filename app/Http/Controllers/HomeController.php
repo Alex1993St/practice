@@ -27,13 +27,25 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * send to CommentRepository save data
+     *
+     * @param SaveCommentRequest $request
+     * @param CommentRepository $comment
+     *
+     */
     public function saveComment(SaveCommentRequest $request, CommentRepository $comment)
     {
         $comment->prepareData($request);
 
-        return back();
+        return back()->with('message', 'Данные отправлено');;
     }
 
+    /**
+     * get all data from CommentRepository
+     *
+     * return collection
+     */
     public function manager(CommentRepository $comment)
     {
         $comments = $comment->getAll();
@@ -41,6 +53,11 @@ class HomeController extends Controller
         return view('pages.manager', compact('comments'));
     }
 
+    /**
+     * Show the application page client
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function client()
     {
         return view('pages.client');

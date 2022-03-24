@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
+    @include('partials.message')
+
     <form method="POST" action="{{ route('save_comment') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">

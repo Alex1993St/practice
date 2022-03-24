@@ -1,9 +1,9 @@
 <?php
 
+use App\Modules\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use \App\User;
-use \Carbon\Carbon;
-use \Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthSeeder extends Seeder

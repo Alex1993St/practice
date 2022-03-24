@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+    @include('partials.message')
     <div>
         <a href="{{ route('manager') }}">Назад</a>
     </div>

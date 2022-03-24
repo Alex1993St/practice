@@ -3,10 +3,17 @@
 namespace App\Repositories;
 
 use App\Jobs\SendMailJob;
-use App\Comment;
+use App\Modules\Comment;
 
 class CommentRepository
 {
+    /**
+     * save data and send mail
+     *
+     * @param  $request
+     *
+     * return boolean
+     */
     public function prepareData($request)
     {
         try {
@@ -26,11 +33,26 @@ class CommentRepository
         }
     }
 
+    /**
+     * save file
+     *
+     * @param  $file
+     *
+     * return void
+     */
     public function saveFile($file)
     {
         $file->move(public_path('/uploads/'), $file->getClientOriginalName());
     }
 
+    /**
+     * job for send mail to manager
+     *
+     * @param  $message
+     * @param  $file
+     *
+     * return void
+     */
     public function sendMail($message, $file)
     {
         $path = public_path('/unloads/').$file->getClientOriginalName();
@@ -38,6 +60,14 @@ class CommentRepository
         dispatch(new SendMailJob($message, $path, auth()->user()));
     }
 
+    /**
+     * save data to Comment model
+     *
+     * @param  $message
+     * @param  $file
+     *
+     * return void
+     */
     public function saveComment($file, $message)
     {
         Comment::create([
@@ -48,11 +78,21 @@ class CommentRepository
         ]);
     }
 
+    /**
+     * get all data from Comment model
+     *
+     * return collection
+     */
     public function getAll()
     {
         return Comment::get();
     }
 
+    /**
+     * update is_answered
+     *
+     * return void
+     */
     public function updateStatus($comment)
     {
         $comment->is_answered = 1;
